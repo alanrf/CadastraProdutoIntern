@@ -17,13 +17,14 @@
     <string name="medicamento">Medicina</string>
     <string name="perfume">Perfume</string>
     <string name="cosmetico">Cosmético</string>
-    <string name="erro_inesperado">Um erro inesperado aconteceu, contate a empresa desenvolvedora</string>
-    <string name="campo_obrigatorio">Campo obrigatório</string>
+    <string name="erro_inesperado">Se ha producido un error inesperado, póngase en contacto con la empresa desarrolladora</string>
+    <string name="campo_obrigatorio">Campo obligatorio</string>
     <string name="date_format">dd/MM/yyyy</string>
-    <string name="portugues">Português</string>
-    <string name="ingles">Inglês</string>
-    <string name="espanhol">Espanhol</string>
-    <string name="alterarIdioma">Alterar idioma</string>
+    <string name="portugues">Portugués</string>
+    <string name="ingles">Inglés</string>
+    <string name="espanhol">Español</string>
+    <string name="alemao">Alemán</string>
+    <string name="alterarIdioma">Cambiar idioma</string>
 
     <string-array name="array_categoria">
         <item>@string/medicamento</item>

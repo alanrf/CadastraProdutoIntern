@@ -18,12 +18,13 @@
     <string name="perfume">Perfume</string>
     <string name="cosmetico">Cosmético</string>
 
-    <string name="erro_inesperado">Se ha producido un error inesperado, póngase en contacto con la empresa desarrolladora</string>
-    <string name="campo_obrigatorio">Campo obligatorio</string>
+    <string name="erro_inesperado">Um erro inesperado ocorreu, contate a empresa desenvolvedor</string>
+    <string name="campo_obrigatorio">Campo obrigatório</string>
     <string name="date_format">dd/MM/yyyy</string>
     <string name="portugues">Português</string>
     <string name="ingles">Inglês</string>
     <string name="espanhol">Espanhol</string>
+    <string name="alemao">Alemão</string>
     <string name="alterarIdioma">Alterar idioma</string>
 
     <string-array name="array_categoria">

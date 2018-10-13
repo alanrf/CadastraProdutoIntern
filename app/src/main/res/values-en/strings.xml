@@ -20,11 +20,12 @@
 
     <string name="erro_inesperado">An unexpected error happened, please contact the development company</string>
     <string name="campo_obrigatorio">Mandatory field</string>
-    <string name="date_format">MM/dd/yyyy</string>
-    <string name="portugues">Português</string>
-    <string name="ingles">Inglês</string>
-    <string name="espanhol">Espanhol</string>
-    <string name="alterarIdioma">Alterar idioma</string>
+    <string name="date_format">MM-dd-yyyy</string>
+    <string name="portugues">Portuguese</string>
+    <string name="ingles">English</string>
+    <string name="espanhol">Spanish</string>
+    <string name="alemao">German</string>
+    <string name="alterarIdioma">Change language</string>
 
     <string-array name="array_categoria">
         <item>@string/medicamento</item>

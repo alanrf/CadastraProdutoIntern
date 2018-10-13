@@ -10,6 +10,7 @@ class IdiomaActivity : AppCompatActivity() {
     private val pt_BR = "pt"
     private val en_US = "en"
     private val es_ES = "es"
+    private val de_DE = "de"
 
     lateinit var idiomaHelper: IdiomaHelper
 
@@ -33,6 +34,9 @@ class IdiomaActivity : AppCompatActivity() {
         if (rb_es.isChecked) {
             return es_ES
         }
+        if (rb_de.isChecked) {
+            return de_DE
+        }
         return pt_BR
     }
 
@@ -46,6 +50,9 @@ class IdiomaActivity : AppCompatActivity() {
         }
         if (pt_BR.equals(preferencia)) {
             rb_pt.isChecked = true
+        }
+        if (de_DE.equals(preferencia)) {
+            rb_de.isChecked = true
         }
     }
 }

@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         internal lateinit var produtoAdapter: ProdutoListaAdapter
     }
 
+    private val IDIOMA_ALTERADO = 99
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -285,8 +287,15 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
         if (id == R.id.selecionar_idioma) {
             val intent = Intent(this, IdiomaActivity::class.java)
-            startActivityForResult(intent,1)
+            startActivityForResult(intent,IDIOMA_ALTERADO)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == IDIOMA_ALTERADO){
+            recreate()
+        }
     }
 }

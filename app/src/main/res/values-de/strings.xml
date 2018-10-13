@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Farma</string>
+    <string name="nome">Name</string>
+    <string name="descricao">Produktbeschreibung</string>
+    <string name="categoria">Kategorie</string>
+    <string name="quantidade">Menge</string>
+    <string name="datavalidade">Ablaufdatum</string>
+    <string name="produto">Produkt</string>
+    <string name="filtrar_por">Filtern nach</string>
+    <string name="valor_do_filtro">Filterwert</string>
+    <string name="limpar_filtros">Filter löschen</string>
+    <string name="cancelar">Abbrechen</string>
+    <string name="filtrar">Filter</string>
+    <string name="gravar">Speichern</string>
+    <string name="selecionarIdioma">Wählen Sie Sprache</string>
+
+    <string name="medicamento">Medikamente</string>
+    <string name="perfume">Parfüm</string>
+    <string name="cosmetico">Kosmetik</string>
+
+    <string name="erro_inesperado">Ein unerwarteter Fehler ist aufgetreten, bitte wenden Sie sich an die Entwicklungsfirma</string>
+    <string name="campo_obrigatorio">Pflichtfeld</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="portugues">Zuhause</string>
+    <string name="ingles">Englisch</string>
+    <string name="espanhol">Französisch</string>
+    <string name="alemao">Deutsch</string>
+    <string name="alterarIdioma">Sprache ändern</string>
+
+    <string-array name="array_categoria">
+        <item>@string/medicamento</item>
+        <item>@string/perfume</item>
+        <item>@string/cosmetico</item>
+    </string-array>
+
+    <string-array name="array_filtro">
+        <item>@string/nome</item>
+        <item>@string/descricao</item>
+        <item>@string/categoria</item>
+        <item>@string/quantidade</item>
+        <item>@string/datavalidade</item>
+    </string-array>
+
+</resources>
