@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/lbDialogFiltrarPor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtrar por" />
+
+    <Spinner
+        android:id="@+id/spDialogFiltro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:entries="@array/array_filtro" />
+
+    <TextView
+        android:id="@+id/lbDialogFiltroValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valor do filtro" />
+
+    <EditText
+        android:id="@+id/edDialogFiltroTexto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:text=""
+        />
+
+    <EditText
+        android:id="@+id/edDialogFiltroData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:ems="10"
+        android:inputType="date"
+        android:maxEms="10"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/edDialogFiltroQuantidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxEms="10"
+        android:text="" />
+
+    <Spinner
+        android:id="@+id/spDialogFiltroCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:entries="@array/array_categoria" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btDialogLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Limpar filtros" />
+
+        <Button
+            android:id="@+id/btDialogCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btDialogFiltrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Filtrar" />
+    </LinearLayout>
+
+</LinearLayout>

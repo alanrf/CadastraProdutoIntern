@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Cadastra Produto</string>
+    <string name="title_activity_main">Produtos</string>
+    <string name="nome">Nome</string>
+    <string name="descricao">Descrição</string>
+    <string name="categoria">Categoria</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="datavalidade">Data de Validade</string>
+
+    <string-array name="array_categoria">
+        <item>Medicamento</item>
+        <item>Perfume</item>
+        <item>Cosmético</item>
+    </string-array>
+
+    <string-array name="array_filtro">
+        <item>@string/nome</item>
+        <item>@string/descricao</item>
+        <item>@string/categoria</item>
+        <item>@string/quantidade</item>
+        <item>@string/datavalidade</item>
+    </string-array>
+
+</resources>
