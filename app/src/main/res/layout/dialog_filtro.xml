@@ -10,7 +10,7 @@
         android:id="@+id/lbDialogFiltrarPor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Filtrar por" />
+        android:text="@string/filtrar_por" />
 
     <Spinner
         android:id="@+id/spDialogFiltro"
@@ -27,7 +27,7 @@
         android:id="@+id/lbDialogFiltroValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Valor do filtro" />
+        android:text="@string/valor_do_filtro" />
 
     <EditText
         android:id="@+id/edDialogFiltroTexto"
@@ -93,21 +93,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Limpar filtros" />
+            android:text="@string/limpar_filtros" />
 
         <Button
             android:id="@+id/btDialogCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="@string/cancelar" />
 
         <Button
             android:id="@+id/btDialogFiltrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Filtrar" />
+            android:text="@string/filtrar" />
     </LinearLayout>
 
 </LinearLayout>

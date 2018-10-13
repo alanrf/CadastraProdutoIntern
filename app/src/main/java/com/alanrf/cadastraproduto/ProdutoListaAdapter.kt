@@ -46,7 +46,7 @@ class ProdutoListaAdapter(
         private val quantidade: TextView = itemView.lbQuantidade
         private val validade: TextView = itemView.lbData
 
-        val myFormat = "dd/MM/yyyy"
+        val myFormat = itemView.context.getString(R.string.date_format)
         val sdf = SimpleDateFormat(myFormat)
 
         fun bind(produto: Produto) {

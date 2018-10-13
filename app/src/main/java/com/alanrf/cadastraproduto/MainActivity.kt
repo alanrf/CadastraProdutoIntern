@@ -4,28 +4,26 @@ import android.app.DatePickerDialog
 import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.InputType
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Spinner
-import com.alanrf.cadastraproduto.MainActivity.Companion.meusProdutosArrayList
-import com.alanrf.cadastraproduto.MainActivity.Companion.produtoAdapter
-import com.alanrf.cadastraproduto.MainActivity.Companion.produtoDao
-import com.alanrf.cadastraproduto.R.id.rcv_lista_produtos
 import com.alanrf.cadastraproduto.db.BancoDados
 import com.alanrf.cadastraproduto.db.MIGRATION_1_2
 import com.alanrf.cadastraproduto.db.dao.ProdutoDao
 import com.alanrf.cadastraproduto.db.entity.Produto
+import com.alanrf.cadastraproduto.helper.IdiomaHelper
 import com.alanrf.cadastraproduto.model.ProdutoFiltro
-import com.alanrf.cadastraproduto.swipehelper.SwipeToDeleteCallback
-import com.alanrf.cadastraproduto.swipehelper.SwipeToEditCallback
+import com.alanrf.cadastraproduto.helper.swipehelper.SwipeToDeleteCallback
+import com.alanrf.cadastraproduto.helper.swipehelper.SwipeToEditCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.dialog_filtro.view.*
@@ -34,9 +32,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val myFormat = "dd/MM/yyyy"
-    private val sdf = SimpleDateFormat(myFormat)
 
     companion object {
         internal val nomeBancoDados: String = "nomebancodedados"
@@ -49,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        //Carregar idioma configurado nas preferencias
+        val idiomaHelper = IdiomaHelper(this, resources)
+        idiomaHelper.carregaIdioma()
 
         configuraBanco()
         configurarComportamentoListaRecyclerView(meusProdutosArrayList)
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "dd/MM/yyyy" // mention the format you need
+                val myFormat = getString(R.string.date_format)
                 val sdf = SimpleDateFormat(myFormat)
 
                 val str = sdf.format(cal.time)
@@ -99,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            edFiltroData.inputType = InputType.TYPE_NULL;
+            edFiltroData.inputType = InputType.TYPE_NULL
             edFiltroData.setOnClickListener {
                 DatePickerDialog(this@MainActivity, dateSetListener,
                         cal.get(Calendar.YEAR),
@@ -149,17 +148,17 @@ class MainActivity : AppCompatActivity() {
             esconderSpinner(spFiltroCategoria)
             edFiltroTexto.visibility = View.VISIBLE
 
-            btFiltrarPor.setOnClickListener(View.OnClickListener {
+            btFiltrarPor.setOnClickListener({
                 produtoFiltro = criarEntidadeFiltro(spFiltro.selectedItem.toString(), spFiltroCategoria, edFiltroTexto, edFiltroQuantidade, edFiltroData)
                 produtoAdapter.substituirTodosProdutos(carregarProdutosPorExemplo(produtoFiltro))
-                dialog.dismiss();
+                dialog.dismiss()
             })
             btCancelarFiltro.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
             })
-            btLimparFiltro.setOnClickListener(View.OnClickListener {
+            btLimparFiltro.setOnClickListener({
                 produtoAdapter.substituirTodosProdutos(carregarProdutos())
-                dialog.dismiss();
+                dialog.dismiss()
             })
 
         }
@@ -172,11 +171,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun esconderCampo(ed: EditText) {
         ed.visibility = View.GONE
-        ed.text.clear();
+        ed.text.clear()
     }
 
     private fun criarEntidadeFiltro(selected: String, spFiltroCategoria: Spinner, edFiltroTexto: EditText, edFiltroQuantidade: EditText, edFiltroData: EditText): ProdutoFiltro {
-        var produtoFiltro = ProdutoFiltro(categoria = null, nome = null, descricao = null, validade = null, quantidade = null)
+        var produtoFiltro = ProdutoFiltro(
+                categoria = null,
+                nome = null,
+                descricao = null,
+                validade = null,
+                quantidade = null
+        )
 
         if (resources.getString(R.string.categoria) == selected)
             produtoFiltro.categoria = spFiltroCategoria.selectedItem.toString()
@@ -190,8 +195,12 @@ class MainActivity : AppCompatActivity() {
         if (resources.getString(R.string.quantidade) == selected)
             produtoFiltro.quantidade = edFiltroQuantidade.text.toString().toInt()
 
-        if (resources.getString(R.string.datavalidade) == selected)
+        if (resources.getString(R.string.datavalidade) == selected) {
+            val myFormat = getString(R.string.date_format)
+            val sdf = SimpleDateFormat(myFormat)
+
             produtoFiltro.validade = sdf.parse(edFiltroData.text.toString())
+        }
 
         return produtoFiltro
     }
@@ -215,8 +224,8 @@ class MainActivity : AppCompatActivity() {
         val itemTouchHelperDelete = ItemTouchHelper(
                 object : SwipeToDeleteCallback(this) {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        var posicao = viewHolder.adapterPosition
-                        val prod = meusProdutosArrayList.get(posicao)
+                        val posicao = viewHolder.adapterPosition
+                        val prod = meusProdutosArrayList[posicao]
                         produtoDao.remover(prod)
                         meusProdutosArrayList.removeAt(posicao)
                         produtoAdapter.notifyItemRemoved(posicao)
@@ -229,8 +238,8 @@ class MainActivity : AppCompatActivity() {
         val itemTouchHelperEdit = ItemTouchHelper(
                 object : SwipeToEditCallback(this) {
                     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        var posicao = viewHolder.adapterPosition
-                        val prod = meusProdutosArrayList.get(posicao)
+                        val posicao = viewHolder.adapterPosition
+                        val prod = meusProdutosArrayList[posicao]
                         produtoCadastroIntent.putExtra("produto", prod)
 
                         startActivity(produtoCadastroIntent)
@@ -246,24 +255,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun carregarProdutosPorExemplo(produtoFiltro: ProdutoFiltro): ArrayList<Produto> {
         if (produtoFiltro.categoria != null) {
-            return produtoDao.selecionarProdutosPorCategoria(produtoFiltro.categoria!!) as ArrayList<Produto>;
+            return produtoDao.selecionarProdutosPorCategoria(produtoFiltro.categoria!!) as ArrayList<Produto>
         }
         if (produtoFiltro.nome != null) {
-            return produtoDao.selecionarProdutosPorNome(likeFilter(produtoFiltro.nome!!)) as ArrayList<Produto>;
+            return produtoDao.selecionarProdutosPorNome(likeFilter(produtoFiltro.nome!!)) as ArrayList<Produto>
         }
         if (produtoFiltro.descricao != null) {
-            return produtoDao.selecionarProdutosPorDescricao(likeFilter(produtoFiltro.descricao!!)) as ArrayList<Produto>;
+            return produtoDao.selecionarProdutosPorDescricao(likeFilter(produtoFiltro.descricao!!)) as ArrayList<Produto>
         }
         if (produtoFiltro.quantidade != null) {
-            return produtoDao.selecionarProdutosPorQuantidade(produtoFiltro.quantidade!!) as ArrayList<Produto>;
+            return produtoDao.selecionarProdutosPorQuantidade(produtoFiltro.quantidade!!) as ArrayList<Produto>
         }
         if (produtoFiltro.validade != null) {
-            return produtoDao.selecionarProdutosPorDataValidade(produtoFiltro.validade!!) as ArrayList<Produto>;
+            return produtoDao.selecionarProdutosPorDataValidade(produtoFiltro.validade!!) as ArrayList<Produto>
         }
         return ArrayList<Produto>()
     }
 
     private fun likeFilter(s: String) : String {
         return "%" + s +"%"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.selecionar_idioma) {
+            val intent = Intent(this, IdiomaActivity::class.java)
+            startActivityForResult(intent,1)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

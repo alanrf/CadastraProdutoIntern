@@ -1,4 +1,4 @@
-package com.alanrf.cadastraproduto.swipehelper
+package com.alanrf.cadastraproduto.helper.swipehelper
 
 import android.content.Context
 import android.graphics.Canvas
@@ -13,13 +13,13 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import com.alanrf.cadastraproduto.R
 
 
-abstract class SwipeToDeleteCallback(context: Context) : SwipeToCallback(context, 0, ItemTouchHelper.LEFT) {
+abstract class SwipeToEditCallback(context: Context) : SwipeToCallback(context, 0, ItemTouchHelper.RIGHT) {
 
-    private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.ic_delete_white_24)
-    private val intrinsicWidth: Int = deleteIcon?.intrinsicWidth!!
-    private val intrinsicHeight: Int = deleteIcon?.intrinsicHeight!!
+    private val editIcon = ContextCompat.getDrawable(context, R.drawable.ic_edit_white_24)
+    private val intrinsicWidth: Int = editIcon?.intrinsicWidth!!
+    private val intrinsicHeight: Int = editIcon?.intrinsicHeight!!
     private val background = ColorDrawable()
-    private val backgroundColor = Color.parseColor("#f44336")
+    private val backgroundColor = Color.GREEN
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -28,25 +28,25 @@ abstract class SwipeToDeleteCallback(context: Context) : SwipeToCallback(context
         val isCanceled = dX == 0f && !isCurrentlyActive
 
         if (isCanceled) {
-            clearCanvas(c, itemView.right + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())
+            clearCanvas(c, itemView.left + dX, itemView.top.toFloat(), itemView.left.toFloat(), itemView.bottom.toFloat())
             recyclerView?.let { super.onChildDraw(c, it, viewHolder, dX, dY, actionState, isCurrentlyActive) }
             return
         }
 
-        // Draw the red delete background
+        // Draw the green edit background
         background.color = backgroundColor
-        background.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+        background.setBounds(itemView.left + dX.toInt(), itemView.top, itemView.left, itemView.bottom)
         background.draw(c)
 
-        // Calculate position of delete icon
-        val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
-        val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
-        val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
-        val deleteIconRight = itemView.right - deleteIconMargin
-        val deleteIconBottom = deleteIconTop + intrinsicHeight
+        // Calculate position of edit icon
+        val editIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
+        val editIconMargin = (itemHeight - intrinsicHeight) / 2
+        val editIconLeft = itemView.left + editIconMargin
+        val editIconRight = itemView.left + editIconMargin + intrinsicWidth
+        val editIconBottom = editIconTop + intrinsicHeight
 
-        deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
-        deleteIcon?.draw(c)
+        editIcon?.setBounds(editIconLeft, editIconTop, editIconRight, editIconBottom)
+        editIcon?.draw(c)
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }

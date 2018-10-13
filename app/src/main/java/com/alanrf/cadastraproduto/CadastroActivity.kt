@@ -13,20 +13,23 @@ import com.alanrf.cadastraproduto.MainActivity.Companion.meusProdutosArrayList
 import com.alanrf.cadastraproduto.MainActivity.Companion.produtoDao
 import com.alanrf.cadastraproduto.db.entity.Produto
 import kotlinx.android.synthetic.main.content_cadastro.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class CadastroActivity : AppCompatActivity() {
 
-    private val myFormat = "dd/MM/yyyy"
-    private val sdf = SimpleDateFormat(myFormat)
+    private lateinit var myFormat: String
+    private lateinit var sdf: DateFormat
     private var cal = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
 
+        myFormat = getString(R.string.date_format)
+        sdf = SimpleDateFormat(myFormat)
         defineComportamentoDataValidade()
     }
 
@@ -68,8 +71,8 @@ class CadastroActivity : AppCompatActivity() {
             edDataValidade.editText?.error = null
         }
 
-        edDataValidade.editText?.inputType = InputType.TYPE_NULL;
-        edDataValidade.editText?.showSoftInputOnFocus = false;
+        edDataValidade.editText?.inputType = InputType.TYPE_NULL
+        edDataValidade.editText?.showSoftInputOnFocus = false
         edDataValidade.editText?.setOnClickListener {
             DatePickerDialog(this@CadastroActivity, dateSetListener,
                     cal.get(Calendar.YEAR),
@@ -104,19 +107,19 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun validarCampos() : Boolean {
         var b =  validaEditTextNotNull(edNome.editText)
-        b = validaEditTextNotNull(edDescricao.editText) && b;
-        b = validaEditTextNotNull(edQuantidade.editText) && b;
-        b = validaEditTextNotNull(edDataValidade.editText) && b;
+        b = validaEditTextNotNull(edDescricao.editText) && b
+        b = validaEditTextNotNull(edQuantidade.editText) && b
+        b = validaEditTextNotNull(edDataValidade.editText) && b
         return b
     }
 
     private fun validaEditTextNotNull(ed: EditText?): Boolean {
         if (ed == null) {
-            Toast.makeText(this, "Um erro inesperado aconteceu, contate a empresa desenvolvedora", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.erro_inesperado), Toast.LENGTH_LONG).show()
         }
 
         if (ed?.text == null || ed?.text.toString().trim() == "") {
-            ed?.error = "Este campo deve ser preenchido"
+            ed?.error = getString(R.string.campo_obrigatorio)
             return false
         }
 

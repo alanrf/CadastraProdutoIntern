@@ -8,7 +8,7 @@
         android:id="@+id/lbProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="-"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/lbCategoria"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="TextView"
+        android:text="-"
         app:layout_constraintStart_toStartOf="@+id/lbProduto"
         app:layout_constraintTop_toBottomOf="@+id/lbProduto" />
 
@@ -29,7 +29,7 @@
         android:id="@+id/lbQuantidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="-"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside" />
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="TextView"
+        android:text="-"
         app:layout_constraintEnd_toEndOf="@+id/lbQuantidade"
         app:layout_constraintTop_toBottomOf="@+id/lbQuantidade"/>
 </android.support.constraint.ConstraintLayout>

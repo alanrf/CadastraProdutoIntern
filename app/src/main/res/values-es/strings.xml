@@ -1,25 +1,24 @@
 <resources>
     <string name="app_name">Farma</string>
-    <string name="nome">Nome</string>
-    <string name="descricao">Descrição</string>
-    <string name="categoria">Categoria</string>
-    <string name="quantidade">Quantidade</string>
-    <string name="datavalidade">Data de Validade</string>
-    <string name="produto">Produto</string>
+    <string name="nome">Nombre</string>
+    <string name="descricao">Descripcíon</string>
+    <string name="categoria">Categoría</string>
+    <string name="quantidade">Cantidad</string>
+    <string name="datavalidade">Fecha de validación</string>
+    <string name="produto">Producto</string>
     <string name="filtrar_por">Filtrar por</string>
-    <string name="valor_do_filtro">Valor do filtro</string>
-    <string name="limpar_filtros">Limpar filtros</string>
+    <string name="valor_do_filtro">Valor del filtro</string>
+    <string name="limpar_filtros">Limpiar filtros</string>
     <string name="cancelar">Cancelar</string>
     <string name="filtrar">Filtrar</string>
-    <string name="gravar">Gravar</string>
-    <string name="selecionarIdioma">Selecionar Idioma</string>
+    <string name="gravar">Registrar</string>
+    <string name="selecionarIdioma">Seleccionar idioma</string>
 
-    <string name="medicamento">Medicamento</string>
+    <string name="medicamento">Medicina</string>
     <string name="perfume">Perfume</string>
     <string name="cosmetico">Cosmético</string>
-
-    <string name="erro_inesperado">Se ha producido un error inesperado, póngase en contacto con la empresa desarrolladora</string>
-    <string name="campo_obrigatorio">Campo obligatorio</string>
+    <string name="erro_inesperado">Um erro inesperado aconteceu, contate a empresa desenvolvedora</string>
+    <string name="campo_obrigatorio">Campo obrigatório</string>
     <string name="date_format">dd/MM/yyyy</string>
     <string name="portugues">Português</string>
     <string name="ingles">Inglês</string>
